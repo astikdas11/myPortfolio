@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #F7F5EF;
+    --text-primary: #1B1B1B;
+    --paper-card: #FAF8F2;
+    --paper-line: #E5E1D5;
+  }
+
+  .dark {
+    --bg-primary: #131413;
+    --text-primary: #ECEAE2;
+    --paper-card: #1C1E1B;
+    --paper-line: #2D302B;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+/* Subtle paper texture overlay */
+.paper-texture {
+  background-image: radial-gradient(rgba(27, 27, 27, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+.dark .paper-texture {
+  background-image: radial-gradient(rgba(247, 245, 239, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Notebook ring holes and coils */
+.notebook-rings {
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 18px,
+    #2a2a2a 18px,
+    #2a2a2a 22px
+  );
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5EF;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #131413;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4CEBF;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B6AF9F;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #333631;
+}
+
+/* Reduced Motion Respect */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

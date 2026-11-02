@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+  <defs>
+    <linearGradient id="creamGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EFECE2" />
+      <stop offset="100%" stop-color="#E2DDD0" />
+    </linearGradient>
+    <pattern id="dotPattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#1B1B1B" fill-opacity="0.08" />
+    </pattern>
+  </defs>
+  <rect width="600" height="800" fill="url(#creamGrad)" />
+  <rect width="600" height="800" fill="url(#dotPattern)" />
+  
+  <!-- Subtle silhouette frame -->
+  <g transform="translate(150, 180)" fill="#1B1B1B" opacity="0.85">
+    <!-- Head -->
+    <ellipse cx="150" cy="140" rx="85" ry="105" />
+    <!-- Hair volume stylized -->
+    <path d="M 65 130 C 50 60, 110 30, 150 30 C 210 30, 245 70, 235 130 C 250 145, 240 180, 230 180 C 220 120, 215 80, 150 75 C 90 80, 80 120, 70 180 C 60 180, 55 145, 65 130 Z" fill="#141414" />
+    <!-- Neck -->
+    <rect x="125" y="230" width="50" height="70" rx="6" />
+    <!-- Collar & Tie -->
+    <path d="M 105 285 L 150 340 L 195 285 L 175 285 L 150 315 L 125 285 Z" fill="#F7F5EF" />
+    <polygon points="144,320 156,320 160,420 150,440 140,420" fill="#C5A059" opacity="0.9" />
+    <!-- Shoulders / Blazer -->
+    <path d="M 50 310 C 20 330, -30 380, -50 480 L 350 480 C 330 380, 280 330, 250 310 L 195 285 L 150 340 L 105 285 Z" />
+  </g>
+  
+  <!-- Editorial Badge overlay -->
+  <g transform="translate(180, 680)">
+    <rect width="240" height="44" rx="22" fill="#1B1B1B" />
+    <text x="120" y="27" font-family="'Outfit', sans-serif" font-size="13" font-weight="600" fill="#F7F5EF" text-anchor="middle" letter-spacing="1.5">ASTIK DAS • PORTRAIT</text>
+  </g>
+</svg>
+
