@@ -3,11 +3,7 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Code, Sparkles, Terminal } from 'lucide-react';
 import { PERSONAL_INFO } from '../../data/portfolioData';
 
-interface PortraitFrameProps {
-  onOpenCard?: () => void;
-}
-
-export const PortraitFrame: React.FC<PortraitFrameProps> = () => {
+export const PortraitFrame: React.FC = () => {
   const [usePhoto, setUsePhoto] = useState(true);
   const [showAbilityModal, setShowAbilityModal] = useState(false);
 
@@ -30,6 +26,9 @@ export const PortraitFrame: React.FC<PortraitFrameProps> = () => {
             <img
               src="/astik-portrait-opt.jpg"
               alt="Astik Das — Cybersecurity Enthusiast & Software Developer"
+              width={390}
+              height={500}
+              loading="eager"
               className="w-full h-full object-cover object-[center_30%] filter contrast-[1.02] transition-all duration-700 group-hover:scale-105"
               onError={() => setUsePhoto(false)}
             />
@@ -37,6 +36,8 @@ export const PortraitFrame: React.FC<PortraitFrameProps> = () => {
             <img
               src="/portrait-placeholder.svg"
               alt="Astik Das Portrait Placeholder"
+              width={390}
+              height={500}
               className="w-full h-full object-cover object-center"
             />
           )}

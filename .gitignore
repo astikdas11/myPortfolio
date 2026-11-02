@@ -12,14 +12,19 @@ dist-ssr
 *.local
 node-v*-win-x64
 
-# Editor directories and files
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Editor & OS files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-

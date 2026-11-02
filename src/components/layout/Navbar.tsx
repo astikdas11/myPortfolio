@@ -3,7 +3,7 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../../data/portfolioData';
 
 interface NavbarProps {
-  isDark: boolean;
+  isDark?: boolean;
 }
 
 export const Navbar: React.FC<NavbarProps> = () => {
@@ -102,7 +102,9 @@ export const Navbar: React.FC<NavbarProps> = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="p-2 rounded-xl text-charcoal-700 dark:text-cream-200 hover:bg-cream-200 dark:hover:bg-charcoal-800 transition-colors"
-            aria-label="Toggle navigation menu"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -111,7 +113,10 @@ export const Navbar: React.FC<NavbarProps> = () => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-cream-50/98 dark:bg-charcoal-900/98 border-b border-cream-200 dark:border-charcoal-800 px-6 py-6 shadow-xl backdrop-blur-lg">
+        <div 
+          id="mobile-navigation"
+          className="md:hidden bg-cream-50/98 dark:bg-charcoal-900/98 border-b border-cream-200 dark:border-charcoal-800 px-6 py-6 shadow-xl backdrop-blur-lg"
+        >
           <div className="flex flex-col gap-4 text-sm font-mono">
             <div className="pb-3 border-b border-cream-200 dark:border-charcoal-800 text-[11px] text-charcoal-400 dark:text-cream-500">
               {currentTime}

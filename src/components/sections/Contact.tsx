@@ -9,6 +9,7 @@ export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PERSONAL_INFO.socials.email);
@@ -16,21 +17,79 @@ export const Contact: React.FC = () => {
     setTimeout(() => setCopied(false), 2500);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const fireConfetti = () => {
+    confetti({
+      particleCount: 80,
+      spread: 60,
+      origin: { y: 0.7 },
+      colors: ['#C5A059', '#1B1B1B', '#527960', '#F7F5EF']
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    setErrorMessage(null);
+
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+    const subject = formData.subject.trim();
+    const message = formData.message.trim();
+
+    if (!name || !email || !message) return;
 
     setLoading(true);
-    setTimeout(() => {
+
+    const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
+    const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    try {
+      if (web3formsKey) {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: web3formsKey,
+            name,
+            email,
+            subject: subject || 'Portfolio Contact Inquiry',
+            message,
+            from_name: 'Astik Das Portfolio'
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Delivery service responded with an error.');
+        }
+      } else if (endpoint) {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify({ name, email, subject, message })
+        });
+
+        if (!response.ok) {
+          throw new Error('Message dispatch endpoint returned an error.');
+        }
+      } else {
+        // Fallback simulation delay when no third-party endpoint is configured
+        await new Promise((resolve) => setTimeout(resolve, 600));
+      }
+
       setLoading(false);
       setSubmitted(true);
-      confetti({
-        particleCount: 80,
-        spread: 60,
-        origin: { y: 0.7 },
-        colors: ['#C5A059', '#1B1B1B', '#527960', '#F7F5EF']
-      });
-    }, 700);
+      fireConfetti();
+    } catch {
+      setLoading(false);
+      setErrorMessage(
+        'Unable to deliver message automatically right now. Please reach out directly via your preferred email client.'
+      );
+    }
   };
 
   return (
@@ -181,26 +240,61 @@ export const Contact: React.FC = () => {
                   <p className="text-xs sm:text-sm text-emerald-700 dark:text-emerald-300 font-sans max-w-sm mx-auto">
                     Thank you for reaching out, {formData.name}. I look forward to connecting with you.
                   </p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: '', email: '', subject: '', message: '' });
-                    }}
-                    className="mt-4 px-4 py-2 rounded-full bg-emerald-600 text-white text-xs font-mono hover:bg-emerald-700 transition-colors"
-                  >
-                    Send another note
-                  </button>
+                  <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
+                    <button
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFormData({ name: '', email: '', subject: '', message: '' });
+                      }}
+                      className="px-4 py-2 rounded-full bg-emerald-600 text-white text-xs font-mono hover:bg-emerald-700 transition-colors"
+                    >
+                      Send another note
+                    </button>
+                    <a
+                      href={`mailto:${PERSONAL_INFO.socials.email}?subject=${encodeURIComponent(
+                        formData.subject || 'Portfolio Inquiry'
+                      )}&body=${encodeURIComponent(
+                        `Hi Astik,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+                      )}`}
+                      className="px-4 py-2 rounded-full bg-cream-200 dark:bg-charcoal-700 text-charcoal-800 dark:text-cream-200 text-xs font-mono hover:bg-cream-300 dark:hover:bg-charcoal-600 transition-colors"
+                    >
+                      Open in mail client ↗
+                    </a>
+                  </div>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {errorMessage && (
+                    <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-300 dark:border-amber-800 text-xs font-mono text-amber-800 dark:text-amber-200 space-y-2">
+                      <p>{errorMessage}</p>
+                      <a
+                        href={`mailto:${PERSONAL_INFO.socials.email}?subject=${encodeURIComponent(
+                          formData.subject || 'Portfolio Inquiry'
+                        )}&body=${encodeURIComponent(
+                          `Hi Astik,\n\n${formData.message}\n\nFrom: ${formData.name} (${formData.email})`
+                        )}`}
+                        className="inline-flex items-center gap-1 font-semibold underline hover:text-amber-900 dark:hover:text-amber-100"
+                      >
+                        Click to open in your email client instead ↗
+                      </a>
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2">
+                      <label 
+                        htmlFor="contact-name"
+                        className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2"
+                      >
                         Your Name *
                       </label>
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
                         required
+                        maxLength={100}
+                        autoComplete="name"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder="e.g. Alex Rivera"
@@ -209,12 +303,19 @@ export const Contact: React.FC = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2">
+                      <label 
+                        htmlFor="contact-email"
+                        className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2"
+                      >
                         Email Address *
                       </label>
                       <input
+                        id="contact-email"
+                        name="email"
                         type="email"
                         required
+                        maxLength={100}
+                        autoComplete="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder="alex@example.com"
@@ -224,11 +325,17 @@ export const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2">
+                    <label 
+                      htmlFor="contact-subject"
+                      className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2"
+                    >
                       Topic / Subject
                     </label>
                     <input
+                      id="contact-subject"
+                      name="subject"
                       type="text"
+                      maxLength={150}
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       placeholder="Internship opportunity / TraceHawk discussion"
@@ -237,11 +344,17 @@ export const Contact: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2">
+                    <label 
+                      htmlFor="contact-message"
+                      className="block text-xs font-mono uppercase tracking-wider text-charcoal-600 dark:text-cream-400 mb-2"
+                    >
                       Your Message *
                     </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       required
+                      maxLength={3000}
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}

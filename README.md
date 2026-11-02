@@ -2,90 +2,73 @@
 
 An editorial-style, production-quality personal portfolio website crafted for **Astik Das** (Cybersecurity Enthusiast & Software Developer, 1st-Year BTech Computer Science student).
 
-Inspired by the reference aesthetic: warm ivory background (`#F7F5EF`), oversized typography, professional portrait frame, physical notebook-style interactive title card with spiral rings, arched interactive doors vault, subtle ambient light cord, and generous whitespace.
+Preserves the warm ivory aesthetic (`#F7F5EF`), dark mode studio theme (`#121312`), oversized typography, portrait frame with ability card, physical notebook card with spiral rings, arched interactive doors vault, hanging lamp pull cord, and high-performance micro-interactions.
 
 ---
 
-## 📸 Key Design & Interactive Features
+## 🛠 Tech Stack
 
-1. **Warm Editorial Palette**:
-   - Primary Cream: `#F7F5EF` (dark mode / evening mode: `#121312` obsidian olive).
-   - Charcoal Typography: `#1B1B1B` with subtle brass (`#C5A059`) and sage green (`#527960`) accents.
-   - Subtle paper-texture simulation with crisp micro-interactions.
-
-2. **The Interactive Notebook Card**:
-   - Spiral metallic ring binding at top with punched holes and physical paper depth.
-   - Stacked paper layers with physical tilt (-1.5°).
-   - Click or hover to flip through role pages (`01 / 04`, `02 / 04`, etc.) with physical card turning animations and Web Audio click sounds.
-
-3. **Interactive Project Vault ("Magic happens behind the doors")**:
-   - 3 color-coded arched doors with brass nameplates and keyholes:
-     - **Door 1 (Deep Navy)**: TraceHawk (Network Traffic & Attack Stories)
-     - **Door 2 (Emerald Forest)**: CodeHaters (Full-Stack Next.js 16 & FastAPI Platform)
-     - **Door 3 (Umber Brown)**: DSA Journey (Algorithmic C++ Practice)
-   - Selecting a door opens the room stage with architecture specs and terminal view.
-
-4. **Interactive Hanging Lamp Cord**:
-   - Hanging golden brass pull-tassel at the top right.
-   - Click or drag down to pull the cord with spring physics, triggering a subtle click sound and toggling between daylight cream and evening dark mode.
-
-5. **Live Editorial Clock**:
-   - Shows live formatted local time in the header (`Local time 2:00pm • 3 Nov 2026`).
-
-6. **Professional Portrait with "My Ability Card"**:
-   - Framed portrait with atmospheric glow and "My ability card" button.
-   - Click reveals technical specs and educational overview in an interactive drawer.
-
-7. **Fully Accessible & Reduced-Motion Aware**:
-   - Automatically respects `prefers-reduced-motion: reduce`.
-   - Accessible keyboard focus states, semantic HTML, and zero fabricated credentials.
+- **Framework**: React 18 + Vite 5 (TypeScript)
+- **Styling**: Tailwind CSS 3 (Custom Editorial Palette & Typography)
+- **Animations**: Framer Motion 11
+- **Icons**: Lucide React
+- **Audio Feedback**: Web Audio API (tactile page flips & pull clicks, zero external media dependencies)
+- **Form Forwarding**: Web3Forms / Formspree / Mailto fallback
+- **Production Headers**: Content Security Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy
 
 ---
 
-## 📁 Project Folder Structure
+## 📁 Project Structure
 
 ```
-portfolio1/
-├── index.html                   # HTML template with Google Fonts & metadata
-├── package.json                 # Project dependencies & scripts
-├── postcss.config.js            # PostCSS configuration
-├── tailwind.config.js           # Tailored palette, fonts & shadows
-├── tsconfig.json                # TypeScript compiler configuration
-├── tsconfig.node.json           # Node TypeScript configuration
-├── vite.config.ts               # Vite bundler configuration
+myPortfolio/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml           # Automated GitHub Pages CI/CD workflow
 ├── public/
+│   ├── astik-portrait-opt.jpg   # Optimized portrait
 │   ├── favicon.svg              # Minimalist AD monogram favicon
-│   ├── astik-portrait-opt.jpg   # Optimized professional portrait
-│   └── portrait-placeholder.svg # Minimalist vector silhouette placeholder
-└── src/
-    ├── main.tsx                 # App mount entry point
-    ├── App.tsx                  # Root component & theme provider
-    ├── index.css                # Global Tailwind directives & paper textures
-    ├── types/
-    │   └── index.ts             # Project, Skill, & Achievement interfaces
-    ├── data/
-    │   └── portfolioData.ts     # Single source of truth for text & projects
-    ├── utils/
-    │   └── sound.ts             # Web Audio API tactile feedback
-    └── components/
-        ├── common/
-        │   ├── AvailabilityBadge.tsx # "Open to opportunities" pulsing pill
-        │   ├── CustomCursor.tsx      # Smooth follower cursor
-        │   └── LampPullCord.tsx      # Hanging golden cord theme toggle
-        ├── hero/
-        │   ├── NotebookCard.tsx      # Spiral-bound animated title card
-        │   └── PortraitFrame.tsx     # Framed portrait + ability card
-        ├── layout/
-        │   ├── Navbar.tsx            # Minimal editorial nav + live clock
-        │   └── Footer.tsx            # Editorial footer & back to top
-        └── sections/
-            ├── Hero.tsx              # Oversized typography & actions
-            ├── About.tsx             # Two-column student narrative
-            ├── ProjectVault.tsx      # Arched doors interactive showcase
-            ├── Projects.tsx          # Full project index & code links
-            ├── Skills.tsx            # Honest categorized skills (no % bars)
-            ├── Achievements.tsx      # Certifications, hackathons & DSA
-            └── Contact.tsx           # Contact links, email copy & form
+│   ├── og-image.png             # 1200x630 social preview card
+│   ├── portrait-placeholder.svg # Editorial vector silhouette fallback
+│   ├── robots.txt               # Search engine crawler directives
+│   └── sitemap.xml              # XML Sitemap for search indexing
+├── src/
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── AvailabilityBadge.tsx # "Open to opportunities" pulsing pill
+│   │   │   ├── CustomCursor.tsx      # Smooth follower cursor (reduced-motion aware)
+│   │   │   └── LampPullCord.tsx      # Hanging golden cord theme toggle
+│   │   ├── hero/
+│   │   │   ├── NotebookCard.tsx      # Spiral-bound animated title card
+│   │   │   └── PortraitFrame.tsx     # Framed portrait + ability card
+│   │   ├── layout/
+│   │   │   ├── Footer.tsx            # Editorial footer & back to top
+│   │   │   └── Navbar.tsx            # Minimal editorial nav + live clock
+│   │   └── sections/
+│   │       ├── About.tsx             # Two-column student narrative
+│   │       ├── Achievements.tsx      # Certifications, hackathons & DSA milestones
+│   │       ├── Contact.tsx           # Contact cards & interactive form
+│   │       ├── Hero.tsx              # Oversized typography & actions
+│   │       ├── Projects.tsx          # Full project index & code links
+│   │       └── ProjectVault.tsx      # Arched doors interactive showcase
+│   ├── data/
+│   │   └── portfolioData.ts     # Single source of truth for text & projects
+│   ├── types/
+│   │   └── index.ts             # TypeScript definitions
+│   ├── utils/
+│   │   └── sound.ts             # Web Audio API tactile feedback
+│   ├── App.tsx                  # Root component & theme provider
+│   ├── index.css                # Global Tailwind directives & paper textures
+│   ├── main.tsx                 # App mount entry point
+│   └── vite-env.d.ts            # Vite client & environment variable declarations
+├── .env.example                 # Example environment variables
+├── .gitignore                   # Clean Git ignore rules
+├── index.html                   # HTML template with non-blocking fonts & OG metadata
+├── package.json                 # Project dependencies & scripts
+├── tailwind.config.js           # Tailored palette, fonts & shadows
+├── tsconfig.json                # Strict TypeScript configuration
+├── vercel.json                  # Production security headers & SPA rewrites
+└── vite.config.ts               # Bundler configuration & vendor chunk splitting
 ```
 
 ---
@@ -93,98 +76,65 @@ portfolio1/
 ## 🚀 Getting Started
 
 ### 1. Prerequisites
-Ensure you have **Node.js (v18+)** installed on your system.
+Ensure you have **Node.js (v18+)** and **npm** installed.
 
-### 2. Start the Development Server
+### 2. Installation
+```bash
+npm install
+```
+
+### 3. Environment Setup (Optional)
+To receive messages submitted via the contact form straight to your email without maintaining a backend server:
+```bash
+cp .env.example .env
+```
+Fill in your free Web3Forms access key (from [web3forms.com](https://web3forms.com)) or your Formspree endpoint:
+```env
+VITE_WEB3FORMS_ACCESS_KEY=your_access_key_here
+```
+*(If left blank, the form simulates submission with confetti and provides visitors a direct 1-click fallback to their email client).*
+
+### 4. Development Server
 ```bash
 npm run dev
 ```
-Open ][http://localhost:5173(http://localhost:5173) in your browser.
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### 3. Build for Production
+### 5. Production Build & Verification
 ```bash
+# Type check and build optimized bundle
 npm run build
-```
-This produces an optimized production bundle inside the `dist/` directory.
 
-### 4. Preview Production Build Locally
-```bash
+# Preview production build locally
 npm run preview
 ```
 
 ---
 
-## 🎨 How to Customize
+## 🌐 Production Deployment
 
-### 1. Replacing Your Portrait
-- Place your photo file into the `public/` directory (e.g. `public/astik-portrait-opt.jpg`).
-- The portfolio automatically displays it with smooth image fallback to the vector silhouette.
-- You can also toggle between the photograph and the vector silhouette directly using the button beneath the portrait frame.
+### Option A: Vercel (Recommended — Fastest & Zero Configuration)
+1. Push your repository to GitHub (`https://github.com/astikdas11/myPortfolio`).
+2. Log in to [vercel.com](https://vercel.com) and click **"Add New Project"**.
+3. Import `myPortfolio`.
+4. Vercel automatically detects Vite:
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. (Optional) Add your `VITE_WEB3FORMS_ACCESS_KEY` under **Environment Variables**.
+6. Click **Deploy**. The included `vercel.json` will automatically apply SPA fallbacks and HTTP security headers (CSP, HSTS, X-Content-Type-Options, Referrer-Policy).
 
-### 2. Updating Project Links & Content
-All project details, GitHub URLs, and descriptions live in a clean file:
-👉 **`src/data/portfolioData.ts`**
-
-To change the GitHub repo for TraceHawk, Tic-Tac-Toe, or DSA Journey:
-```typescript
-{
-  id: 'tracehawk',
-  title: 'TraceHawk',
-  githubUrl: 'https://github.com/astikdas11/your-repo-name',
-  liveUrl: 'https://your-demo-url.com', // or omit if no live URL
-  ...
-}
-```
-
-### 3. Updating Your Email & Socials
-In `src/data/portfolioData.ts`:
-```typescript
-socials: {
-  github: 'https://github.com/astikdas11',
-  linkedin: 'https://www.linkedin.com/in/astik-das-253145310/',
-  email: 'your.real.email@gmail.com'
-}
-```
-
-### 4. Adding Real Achievements & Certifications
-In `src/data/portfolioData.ts`, edit the `ACHIEVEMENTS` array:
-```typescript
-{
-  id: 'ach-1',
-  category: 'Cybersecurity',
-  title: 'CompTIA Security+ / TryHackMe Top 5%',
-  issuerOrEvent: 'TryHackMe',
-  dateOrStatus: 'Completed 2026',
-  description: 'Your achievement details...',
-  badgeText: 'Certification',
-  isPlaceholder: false
-}
-```
+### Option B: GitHub Pages (Automated via GitHub Actions)
+A production-ready workflow is already configured in `.github/workflows/deploy.yml`.
+1. Go to your GitHub repository: `https://github.com/astikdas11/myPortfolio`.
+2. Navigate to **Settings > Pages**.
+3. Under **Build and deployment > Source**, select **GitHub Actions**.
+4. Push a commit to the `main` branch. GitHub Actions will automatically install, type-check, build, and publish your portfolio at `https://astikdas11.github.io/myPortfolio/`.
 
 ---
 
-## 🌐 Deployment Instructions
+## 🛡 Security Review Scope & Notice
 
-### Deploy to Vercel (Recommended — 2 minutes)
-1. Push your repository to GitHub (`https://github.com/astikdas11/portfolio`).
-2. Go to [vercel.com](https://vercel.com) and log in with GitHub.
-3. Click **"New Project"** and import `portfolio`.
-4. Vercel automatically detects **Vite**:
-   - Build Command: `npm run build`
-   - Output Directory: `dist`
-5. Click **"Deploy"** — your live website is ready!
-
-### Deploy to GitHub Pages
-1. In `vite.config.ts`, add the base path:
-   ```typescript
-   export default defineConfig({
-     base: '/portfolio/', // Replace with your GitHub repository name
-     plugins: [react()]
-   });
-   ```
-2. Build the project:
-   ```bash
-   npm run build
-   ```
-3. Deploy the `dist` folder to the `gh-pages` branch or configure GitHub Actions under **Settings > Pages > GitHub Actions (Static HTML/Vite)**.
-
+- **Scope**: Application review of static frontend assets, input validation, external link sanitization (`rel="noopener noreferrer"`), environment variable separation, and security response headers.
+- **Headers Configured**: `Content-Security-Policy`, `X-Content-Type-Options`, `X-Frame-Options: DENY`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy`.
+- **Notice**: No static website can be guaranteed 100% invulnerable to all threats. Always keep dependencies updated via `npm audit` and avoid placing private keys or secrets into client-side code.
