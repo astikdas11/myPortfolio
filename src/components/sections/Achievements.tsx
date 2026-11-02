@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, Trophy, GitCommit, Target, Edit3 } from 'lucide-react';
+import { Award, Trophy, GitCommit, Target } from 'lucide-react';
 import { ACHIEVEMENTS } from '../../data/portfolioData';
 
 export const Achievements: React.FC = () => {
@@ -75,38 +75,13 @@ export const Achievements: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Footer with date status & editable indicator */}
+                {/* Footer with date status */}
                 <div className="mt-6 pt-4 border-t border-cream-200 dark:border-charcoal-700 flex items-center justify-between text-[11px] font-mono text-charcoal-400 dark:text-cream-500">
                   <span>{item.dateOrStatus}</span>
-                  {item.isPlaceholder && (
-                    <span 
-                      className="inline-flex items-center gap-1 text-[10px] text-charcoal-400 dark:text-cream-500 hover:text-brass-600 dark:hover:text-brass-400 cursor-pointer"
-                      title="Placeholder item: edit in src/data/portfolioData.ts"
-                    >
-                      <Edit3 className="w-3 h-3" />
-                      <span>Editable</span>
-                    </span>
-                  )}
                 </div>
               </motion.div>
             );
           })}
-        </div>
-
-        {/* Clean note on updating achievements */}
-        <div className="mt-10 p-5 rounded-2xl bg-cream-100/60 dark:bg-charcoal-800/40 border border-dashed border-cream-300 dark:border-charcoal-700 flex items-center justify-between text-xs font-mono text-charcoal-500 dark:text-cream-400">
-          <div className="flex items-center gap-2">
-            <Edit3 className="w-4 h-4 text-brass-500 shrink-0" />
-            <span>Ready to add your new certifications or hackathon wins? Update them anytime in <code className="text-charcoal-800 dark:text-cream-200 font-semibold">src/data/portfolioData.ts</code>.</span>
-          </div>
-          <a
-            href="https://github.com/astikdas11"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-1 text-brass-600 dark:text-brass-400 hover:underline shrink-0"
-          >
-            GitHub Activity →
-          </a>
         </div>
 
       </div>
