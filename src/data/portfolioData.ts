@@ -40,7 +40,7 @@ export const PERSONAL_INFO = {
   socials: {
     github: 'https://github.com/astikdas11',
     linkedin: 'https://www.linkedin.com/in/astik-das-253145310/',
-    email: 'astik.das.dev@example.com' // Placeholder email as requested
+    email: 'astikdas738@gmail.com'
   }
 };
 
