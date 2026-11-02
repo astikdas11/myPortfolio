@@ -40,7 +40,7 @@ export const Contact: React.FC = () => {
     setLoading(true);
 
     const endpoint = import.meta.env.VITE_CONTACT_FORM_ENDPOINT;
-    const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    const web3formsKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '495441a3-2b41-4034-92ad-b5e3ec057cab';
 
     try {
       if (web3formsKey) {
