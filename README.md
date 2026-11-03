@@ -9,7 +9,7 @@
 [![Vite](https://img.shields.io/badge/Vite-5.4.10-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.14-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-11.11.11-0055FF?logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: All Rights Reserved](https://img.shields.io/badge/License-All_Rights_Reserved-red.svg)](LICENSE)
 
 ---
 
@@ -39,7 +39,8 @@
   - [Client-Side Input Validation](#client-side-input-validation)
   - [Asset and Bundle Optimization](#asset-and-bundle-optimization)
   - [Accessibility and Motion Awareness](#accessibility-and-motion-awareness)
-- [Credits and Author Information](#credits-and-author-information)
+- [Author and Contact Information](#author-and-contact-information)
+- [License](#license)
 
 ---
 
@@ -47,9 +48,8 @@
 
 | Resource | URL |
 | :--- | :--- |
-| **Live Production Deployment** | [https://astikdas11.github.io/myPortfolio/](https://astikdas11.github.io/myPortfolio/) |
-| **GitHub Source Repository** | [https://github.com/astikdas11/myPortfolio](https://github.com/astikdas11/myPortfolio) |
-| **Issue Tracker** | [https://github.com/astikdas11/myPortfolio/issues](https://github.com/astikdas11/myPortfolio/issues) |
+| **Live Website** | [https://astikdas11.github.io/myPortfolio/](https://astikdas11.github.io/myPortfolio/) |
+| **GitHub Repository** | [https://github.com/astikdas11/myPortfolio](https://github.com/astikdas11/myPortfolio) |
 
 ---
 
@@ -554,16 +554,21 @@ The contact form in [`src/components/sections/Contact.tsx`](src/components/secti
 
 ---
 
-## Credits and Author Information
+## Author and Contact Information
 
 **Astik Das**  
 *First-Year BTech Computer Science & Engineering Student*  
 *Cybersecurity Enthusiast & Software Developer*
 
+- **Website**: [https://astikdas11.github.io/myPortfolio/](https://astikdas11.github.io/myPortfolio/)
 - **GitHub**: [@astikdas11](https://github.com/astikdas11)
 - **LinkedIn**: [linkedin.com/in/astik-das-253145310/](https://www.linkedin.com/in/astik-das-253145310/)
 - **Email**: [astikdas738@gmail.com](mailto:astikdas738@gmail.com)
 
-### License
+---
 
-This project is open-source and distributed under the terms of the **MIT License**. See the [LICENSE](LICENSE) file for complete details.
+## License
+
+Copyright &copy; 2026 Astik Das. All rights reserved.
+
+This is a personal portfolio repository. Permission is granted to view, download, clone, and inspect the code locally solely for personal evaluation, educational inspection, or recruitment review. Copying, commercial reproduction, or unauthorized use of the author's likeness, personal branding, photographs, or original project content is strictly prohibited. See the [LICENSE](LICENSE) file for complete terms.
