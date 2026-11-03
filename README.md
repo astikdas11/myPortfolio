@@ -21,24 +21,9 @@
 - [Features and Functionality](#features-and-functionality)
 - [Technology Stack](#technology-stack)
 - [Architecture and Project Structure](#architecture-and-project-structure)
-- [Application Workflow and Diagrams](#application-workflow-and-diagrams)
-  - [Application Rendering Workflow](#application-rendering-workflow)
-  - [Production Build and Deployment Pipeline](#production-build-and-deployment-pipeline)
-  - [User Navigation and Interaction Flow](#user-navigation-and-interaction-flow)
-- [Installation and Local Development](#installation-and-local-development)
-  - [Prerequisites](#prerequisites)
-  - [Step-by-Step Setup](#step-by-step-setup)
-- [Production Build and Deployment](#production-build-and-deployment)
-  - [Building for Production](#building-for-production)
-  - [Environment Variables](#environment-variables)
-  - [Deployment to Vercel](#deployment-to-vercel)
-  - [Deployment to GitHub Pages](#deployment-to-github-pages)
-  - [Production Verification](#production-verification)
+- [Technical Highlights & Engineering Practices](#technical-highlights--engineering-practices)
 - [Security and Performance Considerations](#security-and-performance-considerations)
-  - [HTTP Security Headers](#http-security-headers)
-  - [Client-Side Input Validation](#client-side-input-validation)
-  - [Asset and Bundle Optimization](#asset-and-bundle-optimization)
-  - [Accessibility and Motion Awareness](#accessibility-and-motion-awareness)
+- [Local Inspection](#local-inspection)
 - [Author and Contact Information](#author-and-contact-information)
 - [License](#license)
 
@@ -335,174 +320,12 @@ classDiagram
 
 ---
 
-## Application Workflow and Diagrams
+## Technical Highlights & Engineering Practices
 
-### Application Rendering Workflow
-
-```mermaid
-flowchart TD
-    A[Visitor Navigates to Portfolio URL] --> B[Web Server / CDN Returns index.html]
-    B --> C[Browser Parses Head: Preloads LCP Portrait & Starts Async Font Fetch]
-    C --> D[Vite Loads JavaScript Bundle from Assets]
-    D --> E[React Initializes at #root DOM Node]
-    E --> F[App Reads Stored Theme from localStorage or OS Preference]
-    F --> G[Root HTML Applies .dark or Light Palette]
-    G --> H[Framer Motion Triggers Page Entrance Animations]
-    H --> I[Page Fully Interactive: Audio FX, Cursor, and Vault Enabled]
-```
-
-### Production Build and Deployment Pipeline
-
-```mermaid
-flowchart LR
-    Dev[Developer Updates Code] --> Git[Commit & Push to main]
-    Git --> CI[GitHub Actions / Vercel Trigger]
-    CI --> Dep[npm ci Dependencies Install]
-    Dep --> TypeCheck[tsc --noEmit Type Validation]
-    TypeCheck --> ViteBuild[vite build: Rollup Chunk Splitting]
-    ViteBuild --> Dist[Output to dist/ Folder]
-    Dist --> Deploy[Edge CDN Deployment]
-    Deploy --> Live[Live Site with HTTP Security Headers]
-```
-
-### User Navigation and Interaction Flow
-
-```mermaid
-stateDiagram-v2
-    [*] --> HeroSection: Initial Load
-    HeroSection --> FlipNotebook: Click Spiral Notebook Card
-    FlipNotebook --> HeroSection: Next Role Revealed + Audio Click
-    
-    HeroSection --> PullCord: Pull Lamp Cord
-    PullCord --> ThemeSwapped: Daylight <-> Dark Studio Switch
-    ThemeSwapped --> HeroSection: Theme Persisted
-
-    HeroSection --> InspectVault: Navigate to #projects
-    InspectVault --> OpenDoor: Click Arched Door (TraceHawk / CodeHaters / DSA)
-    OpenDoor --> TerminalView: Specs & Terminal Telemetry Rendered
-
-    HeroSection --> ContactForm: Navigate to #contact
-    ContactForm --> SubmitMessage: Fill Form & Click Send
-    SubmitMessage --> ConfettiSuccess: Web3Forms 200 OK + Confetti Blast
-```
-
----
-
-## Installation and Local Development
-
-### Prerequisites
-
-Before running the project locally, verify that you have the following installed on your machine:
-- **Node.js**: Version `18.0.0` or higher (`node -v`)
-- **npm**: Version `9.0.0` or higher (`npm -v`)
-- **Git**: (`git --version`)
-
-### Step-by-Step Setup
-
-#### 1. Clone the Repository
-Clone the project from GitHub to your local filesystem:
-```bash
-git clone https://github.com/astikdas11/myPortfolio.git
-```
-
-#### 2. Navigate to Project Directory
-Change directory into the cloned project:
-```bash
-cd myPortfolio
-```
-
-#### 3. Install Dependencies
-Download and install all required npm packages:
-```bash
-npm install
-```
-*This command reads `package.json` and creates a local `node_modules/` folder with React, Vite, Framer Motion, and Tailwind CSS.*
-
-#### 4. Configure Environment Variables (Optional)
-Copy the example environment file to a local `.env`:
-```bash
-cp .env.example .env
-```
-Open `.env` and set your optional Web3Forms access key if you wish to test live email delivery:
-```env
-VITE_WEB3FORMS_ACCESS_KEY=495441a3-2b41-4034-92ad-b5e3ec057cab
-```
-*(If omitted, the contact form functions in local simulation mode with confetti).*
-
-#### 5. Start the Development Server
-Run the Vite development server with Hot Module Replacement (HMR):
-```bash
-npm run dev
-```
-
-#### 6. Open the Website in Your Browser
-Open your browser and navigate to:
-```
-http://localhost:5173
-```
-
-#### 7. Stopping the Server
-To stop the local development server at any time, press `Ctrl + C` in your terminal window.
-
----
-
-## Production Build and Deployment
-
-### Building for Production
-
-To create an optimized, production-ready static bundle:
-```bash
-npm run build
-```
-This command performs two automated steps:
-1. **`tsc`**: Compiles TypeScript without emitting output files to guarantee type safety.
-2. **`vite build`**: Invokes Rollup to bundle, minify, and tree-shake JavaScript and CSS into the `dist/` folder.
-
-To test the compiled production build locally before deploying:
-```bash
-npm run preview
-```
-
-### Environment Variables
-
-| Variable | Required | Default | Purpose |
-| :--- | :--- | :--- | :--- |
-| `VITE_WEB3FORMS_ACCESS_KEY` | Optional | `495441a3...` (Fallback) | Directs contact form submissions to the author's email via Web3Forms API. |
-| `VITE_CONTACT_FORM_ENDPOINT` | Optional | `undefined` | Custom REST endpoint URL for routing contact submissions. |
-| `VITE_BASE_PATH` | Optional | `./` | Sets public base path for hosting on subdirectories (e.g. GitHub Pages). |
-
-### Deployment to Vercel
-
-The repository includes a preconfigured [`vercel.json`](vercel.json) file that automatically handles Single Page Application (SPA) routing rewrites, asset caching, and security response headers.
-
-1. Push your code to GitHub:
-   ```bash
-   git push origin main
-   ```
-2. Log into the [Vercel Dashboard](https://vercel.com/dashboard) and click **"Add New Project"**.
-3. Import the `myPortfolio` repository.
-4. Verify project settings:
-   - **Framework Preset**: `Vite`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-5. *(Optional)* Add your `VITE_WEB3FORMS_ACCESS_KEY` under **Environment Variables**.
-6. Click **Deploy**. Vercel will build and serve your website globally.
-
-### Deployment to GitHub Pages
-
-An automated GitHub Actions workflow is provided at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-
-1. In your GitHub repository, navigate to **Settings > Pages**.
-2. Under **Build and deployment > Source**, select **GitHub Actions**.
-3. Push any commit to the `main` branch. GitHub Actions will automatically install packages, execute type validation, build the static output, and publish the site.
-
-### Production Verification
-
-To verify that your deployment is running properly:
-- Open browser developer tools (`F12`) and confirm **0 console errors**.
-- Test theme toggling using the pull cord at the top right.
-- Test the project vault by clicking each of the three arched doors.
-- Submit a test inquiry through the contact form to confirm message delivery.
+- **Zero-Latency Tactile Audio Engine**: Custom synthesized sound generator in [`src/utils/sound.ts`](src/utils/sound.ts) using the browser's native **Web Audio API** (oscillators, exponential frequency ramps, and biquad filters) to generate physical click feedback without streaming external audio media files over the network.
+- **Dynamic Interactive Vault**: The "Behind the Doors" gallery runs on dynamic state management, coupling real-time architectural specifications with simulated CLI terminal execution.
+- **Strict Bundle Splitting**: Configured Rollup manual chunking in [`vite.config.ts`](vite.config.ts) to isolate third-party vendor modules (`react`, `framer-motion`, `lucide-react`), keeping the main application code bundle under **88 kB** (~22 kB gzipped).
+- **Edge Delivery with Defensive Security**: Built with automated CI/CD for static edge delivery with production-grade security headers (`Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`).
 
 ---
 
@@ -551,6 +374,23 @@ The contact form in [`src/components/sections/Contact.tsx`](src/components/secti
 
 - **Reduced Motion**: All animations and custom cursor listeners automatically honor the user's operating system preferences via `prefers-reduced-motion: reduce`.
 - **Keyboard Navigation**: Form inputs, interactive cards, and doors feature visible focus rings, semantic HTML tags, and accessible `aria-expanded` and `aria-label` tags.
+
+---
+
+## Local Inspection
+
+For technical reviewers or recruiters wishing to test or inspect the codebase locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start local development server (http://localhost:5173)
+npm run dev
+
+# Run production TypeScript verification and build
+npm run build
+```
 
 ---
 
