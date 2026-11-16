@@ -63,19 +63,19 @@ export const Navbar: React.FC<NavbarProps> = () => {
             <span className="font-editorial font-bold text-sm text-charcoal-850 dark:text-cream-100 tracking-tight">
               {PERSONAL_INFO.name}
             </span>
-            <span className="block text-[10px] font-mono text-charcoal-400 dark:text-cream-500 uppercase tracking-wider -mt-0.5">
+            <span className="block text-[11px] font-sans font-medium text-charcoal-400 dark:text-cream-500 tracking-normal -mt-0.5">
               Portfolio &apos;26
             </span>
           </div>
         </a>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7 text-xs font-mono tracking-wider text-charcoal-600 dark:text-cream-300">
+        <nav className="hidden md:flex items-center gap-7 text-sm font-sans font-medium text-charcoal-600 dark:text-cream-300">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="relative py-1 hover:text-charcoal-900 dark:hover:text-cream-100 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-charcoal-850 dark:after:bg-cream-100 hover:after:w-full after:transition-all after:duration-200"
+              className="relative py-1 hover:text-charcoal-900 dark:hover:text-cream-100 transition-colors after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1.5px] after:bg-charcoal-850 dark:after:bg-cream-100 hover:after:w-full after:transition-all after:duration-200"
             >
               {link.label}
             </a>
@@ -83,17 +83,17 @@ export const Navbar: React.FC<NavbarProps> = () => {
         </nav>
 
         {/* Right side: Live Local Time widget & Connect Pill */}
-        <div className="hidden lg:flex items-center gap-4 text-xs font-mono pr-12">
-          <div className="px-3 py-1 rounded-full bg-cream-200/60 dark:bg-charcoal-800/60 border border-cream-300/80 dark:border-charcoal-700 text-charcoal-500 dark:text-cream-400 text-[11px] select-none">
+        <div className="hidden lg:flex items-center gap-3.5 font-sans pr-12">
+          <div className="px-3.5 py-1.5 rounded-full bg-cream-200/70 dark:bg-charcoal-800/70 border border-cream-300/80 dark:border-charcoal-700 text-charcoal-600 dark:text-cream-300 text-xs font-medium select-none shadow-sm">
             {currentTime || 'Local time 2:00pm • 2026'}
           </div>
 
           <a
             href="#contact"
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-charcoal-850 dark:bg-cream-100 text-cream-100 dark:text-charcoal-900 font-semibold text-xs hover:opacity-90 transition-opacity"
+            className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-charcoal-850 dark:bg-cream-100 text-cream-100 dark:text-charcoal-900 font-semibold text-xs hover:opacity-90 transition-opacity shadow-sm"
           >
             <span>Let&apos;s talk</span>
-            <ArrowUpRight className="w-3 h-3" />
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
@@ -117,8 +117,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
           id="mobile-navigation"
           className="md:hidden bg-cream-50/98 dark:bg-charcoal-900/98 border-b border-cream-200 dark:border-charcoal-800 px-6 py-6 shadow-xl backdrop-blur-lg"
         >
-          <div className="flex flex-col gap-4 text-sm font-mono">
-            <div className="pb-3 border-b border-cream-200 dark:border-charcoal-800 text-[11px] text-charcoal-400 dark:text-cream-500">
+          <div className="flex flex-col gap-4 text-base font-sans font-medium">
+            <div className="pb-3 border-b border-cream-200 dark:border-charcoal-800 text-xs text-charcoal-400 dark:text-cream-500">
               {currentTime}
             </div>
             {navLinks.map((link) => (
