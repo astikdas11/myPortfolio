@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ArrowDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { PERSONAL_INFO } from '../../data/portfolioData';
 import { NotebookCard } from '../hero/NotebookCard';
 import { PortraitFrame } from '../hero/PortraitFrame';
@@ -10,24 +10,20 @@ export const Hero: React.FC = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-between overflow-hidden"
+      className="relative min-h-screen pt-28 pb-16 md:pt-36 md:pb-24 flex flex-col justify-center overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Editorial Typography, Role Card, Action Buttons */}
           <div className="lg:col-span-7 flex flex-col items-start z-10">
-            {/* Top Eyebrow tag */}
+            {/* Availability Badge */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-4"
+              className="mb-4"
             >
-              <span className="text-xs font-mono text-charcoal-500 dark:text-cream-400 uppercase tracking-widest flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-brass-500" />
-                {PERSONAL_INFO.role}
-              </span>
               <AvailabilityBadge text={PERSONAL_INFO.status} />
             </motion.div>
 
@@ -93,28 +89,6 @@ export const Hero: React.FC = () => {
             <PortraitFrame />
           </div>
 
-        </div>
-      </div>
-
-      {/* Bottom Editorial Status Bar — matching the reference video footer line */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-16 pt-6 border-t border-cream-300/70 dark:border-charcoal-800/80">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono uppercase tracking-widest text-charcoal-500 dark:text-cream-400">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span>AVAILABLE FOR WORK & INTERNSHIPS</span>
-          </div>
-
-          <div className="hidden md:block text-charcoal-400 dark:text-cream-500">
-            FIRST-YEAR COMPUTER SCIENCE • CYBERSECURITY ENTHUSIAST
-          </div>
-
-          <a 
-            href="#about"
-            className="flex items-center gap-1.5 hover:text-charcoal-900 dark:hover:text-cream-100 transition-colors group"
-          >
-            <span>SCROLL TO EXPLORE</span>
-            <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-1 transition-transform" />
-          </a>
         </div>
       </div>
     </section>
