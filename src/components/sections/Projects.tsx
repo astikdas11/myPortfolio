@@ -40,12 +40,12 @@ export const Projects: React.FC = () => {
         <ProjectVault />
 
         {/* Editorial Project Showcase Cards Grid */}
-        <div className="mt-16 space-y-12">
+        <div className="mt-24 sm:mt-28 space-y-12">
           <div className="flex items-center justify-between pb-4 border-b border-cream-200 dark:border-charcoal-800">
-            <h3 className="text-xs font-mono uppercase tracking-widest text-charcoal-500 dark:text-cream-400">
+            <h3 className="text-xs font-sans font-semibold uppercase tracking-wider text-charcoal-500 dark:text-cream-400">
               Detailed Project Index
             </h3>
-            <span className="text-xs font-mono text-charcoal-400 dark:text-cream-500">
+            <span className="text-xs font-sans text-charcoal-400 dark:text-cream-500 font-medium">
               03 Projects Cataloged
             </span>
           </div>

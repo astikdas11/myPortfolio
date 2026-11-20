@@ -28,11 +28,11 @@ export const NotebookCard: React.FC = () => {
   return (
     <div className="relative inline-block select-none my-6 group">
       {/* Background stacked paper layers for physical editorial depth */}
-      <div 
-        className="absolute inset-0 bg-[#E8E4D8] dark:bg-[#252824] rounded-2xl transform rotate-2 translate-y-3 translate-x-2 shadow-sm pointer-events-none transition-transform duration-300 group-hover:rotate-3 group-hover:translate-y-4" 
+      <div
+        className="absolute inset-0 bg-[#E8E4D8] dark:bg-[#252824] rounded-2xl transform rotate-2 translate-y-3 translate-x-2 shadow-sm pointer-events-none transition-transform duration-300 group-hover:rotate-3 group-hover:translate-y-4"
       />
-      <div 
-        className="absolute inset-0 bg-[#F0ECE1] dark:bg-[#1E201D] rounded-2xl transform -rotate-1 translate-y-1.5 translate-x-1 shadow-sm pointer-events-none transition-transform duration-300 group-hover:-rotate-2 group-hover:translate-y-2" 
+      <div
+        className="absolute inset-0 bg-[#F0ECE1] dark:bg-[#1E201D] rounded-2xl transform -rotate-1 translate-y-1.5 translate-x-1 shadow-sm pointer-events-none transition-transform duration-300 group-hover:-rotate-2 group-hover:translate-y-2"
       />
 
       {/* Main interactive notebook card */}
@@ -117,11 +117,10 @@ export const NotebookCard: React.FC = () => {
                     sound.pageFlip();
                     setCurrentIndex(idx);
                   }}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    idx === currentIndex
-                      ? 'w-5 bg-charcoal-850 dark:bg-cream-100'
-                      : 'bg-charcoal-300 dark:bg-charcoal-700 hover:bg-charcoal-400'
-                  }`}
+                  className={`w-2 h-2 rounded-full transition-all ${idx === currentIndex
+                    ? 'w-5 bg-charcoal-850 dark:bg-cream-100'
+                    : 'bg-charcoal-300 dark:bg-charcoal-700 hover:bg-charcoal-400'
+                    }`}
                   aria-label={`Jump to title ${idx + 1}`}
                 />
               ))}

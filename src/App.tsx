@@ -37,7 +37,7 @@ export const App: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-cream-100 dark:bg-[#121312] text-charcoal-850 dark:text-cream-100 selection:bg-sage-200 selection:text-charcoal-900 transition-colors duration-500 paper-texture">
-      
+
       {/* Editorial Custom Magnetic Cursor */}
       <CustomCursor />
 
